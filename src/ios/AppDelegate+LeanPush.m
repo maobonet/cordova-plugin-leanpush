@@ -76,7 +76,7 @@ void swizzleMethod(Class c, SEL originalSelector)
                 BOOL oldPushHandlerOnly = ![self respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)];
                 BOOL noPushPayload = ![launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
                 if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
                 }
             }
 
@@ -146,7 +146,6 @@ void swizzleMethod(Class c, SEL originalSelector)
 {
     [self swizzled_application:application didFailToRegisterForRemoteNotificationsWithError:error];
 
-    [AVAnalytics event:@"Failed enable push notification" label:[error description]];
     NSLog(@"error=%@",[error description]);
 }
 
@@ -166,7 +165,6 @@ void swizzleMethod(Class c, SEL originalSelector)
         // The application was just brought from the background to the foreground,
         // so we consider the app as having been "opened by a push notification."
         [pushHandler sendJson:userInfo statusIs:@"background"];
-        [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }
 
     int num = application.applicationIconBadgeNumber;
