@@ -134,7 +134,7 @@
     if (self.callback) {
         NSString * jsCallBack = [NSString stringWithFormat:@"%@(%@,'%@');", self.callback,jsonStr,status];
 //        NSLog(jsCallBack) ;
-        [self.webView stringByEvaluatingJavaScriptFromString:jsCallBack];
+        [self.webViewEngine evaluateJavaScript:jsCallBack completionHandler:nil];
     }else{
         self.cacheResult = jsonStr;
     }
