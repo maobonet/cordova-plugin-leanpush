@@ -35,7 +35,7 @@
     <framework src="MobileCoreServices.framework"/>
     <framework src="CoreTelephony.framework"/>
     <framework src="CoreLocation.framework"/>
-    <framework src="libicucore.dylib">
+    <framework src="libicucore.dylib" />
   </platform>
 
   <platform name="android">
